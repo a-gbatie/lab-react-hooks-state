@@ -2,12 +2,17 @@ import React, { useState } from 'react'
 import ProductList from './components/ProductList'
 import DarkModeToggle from './components/DarkModeToggle'
 import Cart from './components/Cart'
+import { use } from 'react'
 
 const App = () => {
   // TODO: Implement state for dark mode toggle
   const [darkMode, setDarkMode] = useState(false);
 
   // TODO: Implement state for cart management
+  const [cart, setCart] = useState([]);
+  function addToCart(product) {
+    setCart((prevCart) => [...prevCart, product]);
+  }
 
   // TODO: Implement state for category filtering
 
@@ -33,6 +38,7 @@ const App = () => {
       <ProductList />
 
       {/* TODO: Implement and render Cart component */}
+      <Cart cart={cart} />
     </div>
   )
 }
