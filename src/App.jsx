@@ -15,6 +15,10 @@ const App = () => {
   }
 
   // TODO: Implement state for category filtering
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const filteredProducts = selectedCategory === 'all'
+    ? sampleProducts
+    : sampleProducts.filter((product) => product.category === selectedCategory);
 
   return (
     <div>
@@ -29,13 +33,13 @@ const App = () => {
 
       {/* TODO: Implement category filter dropdown */}
       <label>Filter by Category: </label>
-      <select>
+      <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
         <option value="all">All</option>
         <option value="Fruits">Fruits</option>
         <option value="Dairy">Dairy</option>
       </select>
 
-      <ProductList sampleProducts={sampleProducts} addToCart={addToCart} />
+      <ProductList sampleProducts={filteredProducts} addToCart={addToCart} />
 
       {/* TODO: Implement and render Cart component */}
       <Cart cart={cart} />
